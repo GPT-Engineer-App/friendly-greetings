@@ -3,7 +3,6 @@ import { Container, Text, VStack, Image } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import scarraImage from "../assets/scarra.jpg";
 import sovietSymbolImage from "../assets/soviet-symbol.jpg";
-import ipinfo from "ipinfo";
 import geoip from "geoip-lite";
 import DeviceAtlas from "deviceatlas-cloud-client";
 import WURFL from "wurfl-js";
@@ -26,13 +25,14 @@ const Index = () => {
     audio.play();
 
     // Fetch location data
-    ipinfo((err, cLoc) => {
-      if (err) {
+    fetch('https://ipinfo.io/json?token=YOUR_TOKEN_HERE')
+      .then(response => response.json())
+      .then(data => {
+        console.log("IPinfo location:", data);
+      })
+      .catch(err => {
         console.error("IPinfo error:", err);
-      } else {
-        console.log("IPinfo location:", cLoc);
-      }
-    });
+      });
 
     const geo = geoip.lookup("207.97.227.239");
     console.log("GeoIP location:", geo);
