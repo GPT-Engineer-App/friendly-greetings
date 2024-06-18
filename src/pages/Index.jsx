@@ -3,6 +3,10 @@ import { Container, Text, VStack, Image } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import scarraImage from "../assets/scarra.jpg";
 import sovietSymbolImage from "../assets/soviet-symbol.jpg";
+import ipinfo from "ipinfo";
+import geoip from "geoip-lite";
+import DeviceAtlas from "deviceatlas-cloud-client";
+import WURFL from "wurfl-js";
 
 const floatAnimation = keyframes`
   0% { transform: translate(0, 0); }
@@ -20,6 +24,30 @@ const Index = () => {
     const audio = new Audio("https://www.youtube.com/watch?v=U06jlgpMtQs");
     audio.volume = 1.0;
     audio.play();
+
+    // Fetch location data
+    ipinfo((err, cLoc) => {
+      if (err) {
+        console.error("IPinfo error:", err);
+      } else {
+        console.log("IPinfo location:", cLoc);
+      }
+    });
+
+    const geo = geoip.lookup("207.97.227.239");
+    console.log("GeoIP location:", geo);
+
+    // Fetch device data
+    DeviceAtlas.getDeviceData()
+      .then((data) => {
+        console.log("DeviceAtlas data:", data);
+      })
+      .catch((err) => {
+        console.error("DeviceAtlas error:", err);
+      });
+
+    const wurflData = WURFL.getDevice();
+    console.log("WURFL data:", wurflData);
   }, []);
 
   const handleDragStart = (e) => {
