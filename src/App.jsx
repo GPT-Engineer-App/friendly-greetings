@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Index from "./pages/Index.jsx";
+import Home from "./pages/Home.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import CookieConsent from "react-cookie-consent";
 import ReactGA from "react-ga";
@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Index />} />
+        <Route exact path="/" element={<Home />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
       <CookieConsent
