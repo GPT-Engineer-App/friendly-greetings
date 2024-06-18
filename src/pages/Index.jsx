@@ -3,7 +3,6 @@ import { Container, Text, VStack, Image } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import scarraImage from "../assets/scarra.jpg";
 import sovietSymbolImage from "../assets/soviet-symbol.jpg";
-import DeviceAtlas from "deviceatlas-cloud-client";
 import WURFL from "wurfl-js";
 
 const floatAnimation = keyframes`
@@ -33,14 +32,13 @@ const Index = () => {
         console.error("IPinfo error:", err);
       });
 
-    
-
     // Fetch device data
-    DeviceAtlas.getDeviceData()
-      .then((data) => {
+    fetch('https://api.deviceatlas.com/device')
+      .then(response => response.json())
+      .then(data => {
         console.log("DeviceAtlas data:", data);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error("DeviceAtlas error:", err);
       });
 
