@@ -20,6 +20,36 @@ const Index = () => {
     const audio = new Audio("https://www.youtube.com/watch?v=U06jlgpMtQs");
     audio.volume = 1.0;
     audio.play();
+
+    // Fetch location data
+    fetch('https://ipinfo.io/json?token=YOUR_TOKEN_HERE')
+      .then(response => response.json())
+      .then(data => {
+        console.log("IPinfo location:", data);
+      })
+      .catch(err => {
+        console.error("IPinfo error:", err);
+      });
+
+    // Fetch device data
+    fetch('https://api.deviceatlas.com/device')
+      .then(response => response.json())
+      .then(data => {
+        console.log("DeviceAtlas data:", data);
+      })
+      .catch(err => {
+        console.error("DeviceAtlas error:", err);
+      });
+
+    // Fetch WURFL data
+    fetch('https://api.wurfl.io/wurfl.js')
+      .then(response => response.json())
+      .then(data => {
+        console.log("WURFL data:", data);
+      })
+      .catch(err => {
+        console.error("WURFL error:", err);
+      });
   }, []);
 
   const handleDragStart = (e) => {
