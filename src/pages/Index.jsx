@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Container, Text, VStack, Image } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import scarraImage from "../assets/scarra.jpg";
+import sovietSymbolImage from "../assets/soviet-symbol.jpg";
 
 const floatAnimation = keyframes`
   0% { transform: translate(0, 0); }
@@ -39,7 +40,7 @@ const Index = () => {
   };
 
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bg="red.800" color="yellow.300">
+    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center" bgImage={`url(${sovietSymbolImage})`} bgSize="cover" color="yellow.300">
       <VStack spacing={4}>
         <Text fontSize="2xl" fontWeight="bold">Prepare to be Shocked!</Text>
         <Image
