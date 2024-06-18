@@ -25,7 +25,7 @@ const Index = () => {
     audio.volume = 1.0;
     audio.play();
 
-    // Fetch location and device data
+    // Fetch location data
     ipinfo((err, cLoc) => {
       if (err) {
         console.error("IPinfo error:", err);
