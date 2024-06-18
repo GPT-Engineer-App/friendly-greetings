@@ -3,7 +3,6 @@ import { Container, Text, VStack, Image } from "@chakra-ui/react";
 import { keyframes } from "@emotion/react";
 import scarraImage from "../assets/scarra.jpg";
 import sovietSymbolImage from "../assets/soviet-symbol.jpg";
-import WURFL from "wurfl-js";
 
 const floatAnimation = keyframes`
   0% { transform: translate(0, 0); }
@@ -42,8 +41,15 @@ const Index = () => {
         console.error("DeviceAtlas error:", err);
       });
 
-    const wurflData = WURFL.getDevice();
-    console.log("WURFL data:", wurflData);
+    // Fetch WURFL data
+    fetch('https://api.wurfl.io/wurfl.js')
+      .then(response => response.json())
+      .then(data => {
+        console.log("WURFL data:", data);
+      })
+      .catch(err => {
+        console.error("WURFL error:", err);
+      });
   }, []);
 
   const handleDragStart = (e) => {
